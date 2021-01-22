@@ -1,0 +1,32 @@
+What problem does the context API help solve?
+
+Context API solves the restrictive, one-directional flow of the parent-child prop paradigm by allowing the developer to share values without having to pass props.
+
+
+In your own words, describe actions, reducers and the store and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+
+Actions: actions are use-case sets of logic that contain action type and relevant data, containing a string that describes what the action will do.
+
+Reducers: reducers  contain the execution logic defining what happens after it has been passed state and an action. The reducer then returns a new, updated state based on the given instructions (action).
+
+Store: store is the home of app state, the centralized or global state that any component in the app can access, pull from, and return an updated copy of state. It's called the single source of truth because there are not multiple stores throughout the app -- there is only one store, containing all app level state at once.
+
+
+
+What is the difference between Application state and Component state? When would be a good time to use one over the other?
+
+App state is globally scoped. Component state is accessible only by the component it was created in or its children via props. You would use component state if only a single component, or a specific and small component tree, needs the data, while app state would be appropriate if several components requre the same data across several trees.
+
+
+
+
+Describe redux-thunk, what does it allow us to do? How does it change our action-creators?
+
+Redux-thunk allows us to make asynchronous flow and make API calls with actionCreators.
+
+
+
+
+What is your favorite state management system you've learned and this sprint? Please explain why!
+
+ ContextAPI is incredibly simply in its implementation and is thus easeir to use. But Redux's dev tools are an amazing visual aid that help  me understand what was happening, as far as picturing state and understanding exactly what was happening. So I don't really have a preference; I can use both where necessary and that's probably the better solution.
