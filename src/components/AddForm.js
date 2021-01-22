@@ -29,16 +29,14 @@ function AddForm(props) {
 			description: smurf.description,
 		};
 		//alerts for fake form validation
-		{
-			smurf.name === ""
-				? alert("Your Smurf needs a name!")
-				: smurf.nickname === ""
-				? alert("Your Smurf needs a nickname, too!")
-				: smurf.position === ""
-				? alert("Your Smurf needs a position in the village!")
-				: props.addSmurf(newSmurf);
-			setSmurf(stupidSmurfs);
-		}
+		smurf.name === ""
+			? alert("Your Smurf needs a name!")
+			: smurf.nickname === ""
+			? alert("Your Smurf needs a nickname, too!")
+			: smurf.position === ""
+			? alert("Your Smurf needs a position in the village!")
+			: props.addSmurf(newSmurf);
+		setSmurf(stupidSmurfs);
 	};
 
 	return (

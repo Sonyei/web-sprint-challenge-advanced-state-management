@@ -7,7 +7,7 @@ import AddForm from "../components/AddForm";
 const SmurfDisplay = ({ smurf, isFetching, error, fetchSmurf }) => {
 	useEffect(() => {
 		fetchSmurf();
-	}, []);
+	}, [fetchSmurf]);
 
 	if (error) {
 		return <h2>ERROR: {error}</h2>;
