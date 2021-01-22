@@ -57,6 +57,8 @@ export const reducer = (state = initialState, action) => {
 	}
 };
 
+export default reducer;
+
 //Task List:
 //1. Add in the initialState needed to hold:
 //      - an array of smurfs
