@@ -5,6 +5,7 @@ import {
 	ADD_SMURF_START,
 	ADD_SMURF_SUCCESS,
 	ADD_SMURF_FAILURE,
+	SET_ERROR,
 } from "../actions/index";
 
 export const initialState = {
@@ -47,6 +48,12 @@ const reducer = (state = initialState, action) => {
 				id: action.payload,
 			};
 		case ADD_SMURF_FAILURE:
+			return {
+				...state,
+				isFetching: false,
+				error: action.payload,
+			};
+		case SET_ERROR:
 			return {
 				...state,
 				isFetching: false,

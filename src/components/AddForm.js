@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { addSmurf } from "../actions/index";
+import { addSmurf, setError } from "../actions/index";
+
+const stupidSmurfs = {
+	name: "",
+	nickname: "",
+	position: "",
+	description: "",
+	id: Date.now(),
+};
 
 function AddForm(props) {
-	const stupidSmurfs = {
-		name: "",
-		nickname: "",
-		position: "",
-		description: "",
-		id: Date.now(),
-	};
-
 	const [smurf, setSmurf] = useState(stupidSmurfs);
 
 	const handleChange = (e) => {
@@ -28,17 +28,38 @@ function AddForm(props) {
 			position: smurf.position,
 			description: smurf.description,
 		};
+
+		//prevent duplicate submissions
+		for (let i = 0; i < props.smurf.length; i++) {
+			if (smurf.name === props.smurf[i].name) {
+				setError("Already got that one! Please submit a different Smurf.");
+				setSmurf({
+					name: smurf.name,
+					nickname: smurf.nickname,
+					position: smurf.position,
+					description: smurf.description,
+				});
+			}
+		}
+
 		//alerts for fake form validation
-		smurf.name === ""
-			? alert("Your Smurf needs a name!")
-			: smurf.nickname === ""
-			? alert("Your Smurf needs a nickname, too!")
-			: smurf.position === ""
-			? alert("Your Smurf needs a position in the village!")
-			: props.addSmurf(newSmurf);
-		setSmurf(stupidSmurfs);
+		if (smurf.name === "" || smurf.position === "" || smurf.nickname === "") {
+			props.setError("You must include a Name, Nickname, and Position.");
+		} else {
+			props.addSmurf(newSmurf);
+		}
+
+		// smurf.name === ""
+		// 	? alert("Your Smurf needs a name!")
+		// 	: smurf.nickname === ""
+		// 	? alert("Your Smurf needs a nickname, too!")
+		// 	: smurf.position === ""
+		// 	? alert("Your Smurf needs a position in the village!")
+		// 	: props.addSmurf(newSmurf);
+		// setSmurf(stupidSmurfs);
 	};
 
+	console.log(props);
 	return (
 		<section>
 			<h2>Add Smurf</h2>
@@ -111,12 +132,13 @@ function AddForm(props) {
 
 const mapStateToProps = (state) => {
 	return {
+		smurf: state.smurf,
 		isFetching: state.isFetching,
 		error: state.error,
 	};
 };
 
-export default connect(mapStateToProps, { addSmurf })(AddForm);
+export default connect(mapStateToProps, { addSmurf, setError })(AddForm);
 
 //Task List:
 //1. Add in all necessary import components and library methods.
