@@ -29,4 +29,4 @@ Redux-thunk allows us to make asynchronous flow and make API calls with actionCr
 
 What is your favorite state management system you've learned and this sprint? Please explain why!
 
- ContextAPI is incredibly simply in its implementation and is thus easeir to use. But Redux's dev tools are an amazing visual aid that help  me understand what was happening, as far as picturing state and understanding exactly what was happening. So I don't really have a preference; I can use both where necessary and that's probably the better solution.
+ ContextAPI is incredibly simply in its implementation and is thus easeir to use. But Redux's dev tools are an amazing visual aid that help  me understand what was happening, as far as picturing state and understanding exactly what was happening. So I don't really have a preference; I can use both where necessary and that's probably the better solution..
