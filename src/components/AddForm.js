@@ -31,7 +31,7 @@ function AddForm(props) {
 
 		//prevent duplicate submission
 		for (let i = 0; i < props.smurf.length; i++) {
-			if (smurf.name === props.smurf[i].name) {
+			if (smurf.nickname === props.smurf[i].nickname) {
 				return props.setError(
 					"We already have that Smurf! Please enter a new one."
 				);
@@ -39,7 +39,7 @@ function AddForm(props) {
 		}
 
 		//alerts for fake form validation
-		if (smurf.name === "" || smurf.position === "" || smurf.nickname === "") {
+		if (smurf.name === "" || smurf.nickname === "" || smurf.position === "") {
 			props.setError("You must include a Name, Nickname, and Position.");
 		} else {
 			props.addSmurf(newSmurf);
@@ -114,7 +114,7 @@ function AddForm(props) {
 						className="alert alert-danger"
 						role="alert"
 					>
-						Error
+						Error: {props.error}
 					</div>
 				) : (
 					//Their Error doesn't appreciate being in <p> tags, I guess.
