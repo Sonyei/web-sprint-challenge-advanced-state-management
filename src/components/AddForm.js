@@ -32,13 +32,10 @@ function AddForm(props) {
 		//prevent duplicate submissions
 		for (let i = 0; i < props.smurf.length; i++) {
 			if (smurf.name === props.smurf[i].name) {
-				setError("Already got that one! Please submit a different Smurf.");
-				setSmurf({
-					name: smurf.name,
-					nickname: smurf.nickname,
-					position: smurf.position,
-					description: smurf.description,
-				});
+				return props.setError(
+					"We already have that Smurf. Please enter a new one."
+				);
+				// setSmurf(stupidSmurfs);
 			}
 		}
 
@@ -119,7 +116,7 @@ function AddForm(props) {
 						className="alert alert-danger"
 						role="alert"
 					>
-						{alert(`Error: ${props.error.message}`)}
+						<p>{props.error}</p>
 					</div>
 				) : (
 					""

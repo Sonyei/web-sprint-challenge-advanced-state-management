@@ -9,10 +9,6 @@ const SmurfDisplay = ({ smurf, isFetching, error, fetchSmurf }) => {
 		fetchSmurf();
 	}, [fetchSmurf]);
 
-	if (error) {
-		return <h2>ERROR: {error}</h2>;
-	}
-
 	if (isFetching) {
 		return <h2>Looking for Smurfs...</h2>;
 	}

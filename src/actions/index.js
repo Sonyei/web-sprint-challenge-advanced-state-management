@@ -33,8 +33,8 @@ export const addSmurf = (smurf) => (dispatch) => {
 		});
 };
 
-export const setError = (err) => (dispatch) => {
-	dispatch({ type: SET_ERROR, payload: err });
+export const setError = (errorMessage) => (dispatch) => {
+	dispatch({ type: SET_ERROR, payload: errorMessage });
 };
 
 //Task List:
