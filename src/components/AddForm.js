@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { addSmurf, setError } from "../actions/index";
+import { addSmurf, setError, clearError } from "../actions/index";
 
 const stupidSmurfs = {
 	name: "",
@@ -43,7 +43,7 @@ function AddForm(props) {
 			props.setError("You must include a Name, Nickname, and Position.");
 		} else {
 			props.addSmurf(newSmurf);
-			setSmurf(stupidSmurfs);
+			props.clearError();
 		}
 
 		// smurf.name === ""
@@ -56,7 +56,6 @@ function AddForm(props) {
 		// setSmurf(stupidSmurfs);
 	};
 
-	console.log(smurf);
 	return (
 		<section>
 			<h2>Add Smurf</h2>
@@ -118,8 +117,10 @@ function AddForm(props) {
 					>
 						Error: {props.error}
 					</div>
-				) : //Their Error doesn't appreciate being in <p> tags, I guess.
-				null}
+				) : (
+					//Their Error doesn't appreciate being in <p> tags, I guess.
+					""
+				)}
 				<button>Submit Smurf</button>
 			</form>
 		</section>
@@ -129,13 +130,12 @@ function AddForm(props) {
 const mapStateToProps = (state) => {
 	return {
 		...state,
-		smurf: state.smurf,
-		isFetching: state.isFetching,
-		error: state.error,
 	};
 };
 
-export default connect(mapStateToProps, { addSmurf, setError })(AddForm);
+export default connect(mapStateToProps, { addSmurf, setError, clearError })(
+	AddForm
+);
 
 //1. Add in all necessary import components and library methods.
 //2. Connect all needed redux state props and action functions to the component before exporting.

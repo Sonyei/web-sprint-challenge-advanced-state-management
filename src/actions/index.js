@@ -6,6 +6,7 @@ export const ADD_SMURF_START = "ADD_SMURF_START";
 export const ADD_SMURF_SUCCESS = "ADD_SMURF_SUCCESS";
 export const ADD_SMURF_FAILURE = "ADD_SMURF_FAILURE";
 export const SET_ERROR = "SET_ERROR";
+export const CLEAR_ERORR = "CLEAR_ERORR";
 
 export const fetchSmurf = () => (dispatch) => {
 	dispatch({ type: FETCH_SMURF_START });
@@ -35,6 +36,10 @@ export const addSmurf = (smurf) => (dispatch) => {
 
 export const setError = (errorMessage) => {
 	return { type: SET_ERROR, payload: errorMessage };
+};
+
+export const clearError = () => {
+	return { type: CLEAR_ERORR };
 };
 
 //Task List:
