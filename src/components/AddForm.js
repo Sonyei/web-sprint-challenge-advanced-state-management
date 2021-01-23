@@ -31,7 +31,7 @@ function AddForm(props) {
 
 		//prevent duplicate submission
 		for (let i = 0; i < props.smurf.length; i++) {
-			if (smurf.nickname === props.smurf[i].nickname) {
+			if (smurf.name === props.smurf[i].name) {
 				return props.setError(
 					"We already have that Smurf! Please enter a new one."
 				);
@@ -55,6 +55,7 @@ function AddForm(props) {
 		// setSmurf(stupidSmurfs);
 	};
 
+	console.log(props);
 	return (
 		<section>
 			<h2>Add Smurf</h2>
@@ -128,7 +129,9 @@ function AddForm(props) {
 
 const mapStateToProps = (state) => {
 	return {
-		...state,
+		smurf: state.smurf,
+		isFetching: state.isFetching,
+		error: state.error,
 	};
 };
 
