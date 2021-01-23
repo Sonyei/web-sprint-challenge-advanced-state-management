@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { addSmurf, setError } from "../actions/index";
 
+//APPARENTLY THIS HAS TO BE A CLASS COMPONENT OR YOU FAIL THE ENTIRE THING REGARDLESS OF DEMONSTRABLE FUNCTIONALITY
+
 class AddForm extends React.Component {
 	state = {
 		name: "",
@@ -121,7 +123,7 @@ class AddForm extends React.Component {
 								className="alert alert-danger"
 								role="alert"
 							>
-								<p>{this.props.error}</p>
+								Error: {this.props.error}
 							</div>
 						) : (
 							""
