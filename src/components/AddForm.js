@@ -33,9 +33,8 @@ function AddForm(props) {
 		for (let i = 0; i < props.smurf.length; i++) {
 			if (smurf.name === props.smurf[i].name) {
 				return props.setError(
-					"We already have that Smurf. Please enter a new one."
+					"We already have that Smurf! Please enter a new one."
 				);
-				// setSmurf(stupidSmurfs);
 			}
 		}
 
@@ -56,7 +55,6 @@ function AddForm(props) {
 		// setSmurf(stupidSmurfs);
 	};
 
-	console.log(props);
 	return (
 		<section>
 			<h2>Add Smurf</h2>
@@ -66,6 +64,7 @@ function AddForm(props) {
 						Name:
 						<input
 							type="text"
+							placeholder="Please enter a name."
 							value={smurf.name}
 							onChange={handleChange}
 							name="name"
@@ -78,6 +77,7 @@ function AddForm(props) {
 						Nickname:
 						<input
 							type="text"
+							placeholder="Please enter a nickname."
 							value={smurf.nickname}
 							onChange={handleChange}
 							name="nickname"
@@ -90,6 +90,7 @@ function AddForm(props) {
 						Position:
 						<input
 							type="text"
+							placeholder="Please enter a position."
 							value={smurf.position}
 							onChange={handleChange}
 							name="position"
@@ -102,25 +103,25 @@ function AddForm(props) {
 						Description:
 						<input
 							type="text"
+							placeholder="Please enter a description."
 							value={smurf.description}
 							onChange={handleChange}
 							name="description"
 							id={smurf.id}
 						/>
 					</label>
+					{props.error ? (
+						<div
+							data-testid="errorAlert"
+							className="alert alert-danger"
+							role="alert"
+						>
+							<p>{props.error}</p>
+						</div>
+					) : (
+						""
+					)}
 				</div>
-
-				{props.error ? (
-					<div
-						data-testid="errorAlert"
-						className="alert alert-danger"
-						role="alert"
-					>
-						<p>{props.error}</p>
-					</div>
-				) : (
-					""
-				)}
 				<button>Submit Smurf</button>
 			</form>
 		</section>
