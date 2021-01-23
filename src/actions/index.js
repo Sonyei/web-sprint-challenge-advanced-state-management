@@ -38,7 +38,7 @@ export const setError = (errorMessage) => (dispatch) => {
 	dispatch({ type: SET_ERROR, payload: errorMessage });
 	setTimeout(() => {
 		dispatch(clearError());
-	}, 200);
+	}, 3000);
 };
 
 export const clearError = () => {

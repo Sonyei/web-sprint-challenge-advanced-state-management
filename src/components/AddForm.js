@@ -43,7 +43,6 @@ function AddForm(props) {
 			props.setError("You must include a Name, Nickname, and Position.");
 		} else {
 			props.addSmurf(newSmurf);
-			props.clearError();
 		}
 
 		// smurf.name === ""
