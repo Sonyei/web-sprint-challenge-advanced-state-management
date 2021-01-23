@@ -56,7 +56,7 @@ function AddForm(props) {
 		// setSmurf(stupidSmurfs);
 	};
 
-	console.log(props);
+	console.log(smurf);
 	return (
 		<section>
 			<h2>Add Smurf</h2>
@@ -118,10 +118,8 @@ function AddForm(props) {
 					>
 						Error: {props.error}
 					</div>
-				) : (
-					//Their Error doesn't appreciate being in <p> tags, I guess.
-					""
-				)}
+				) : //Their Error doesn't appreciate being in <p> tags, I guess.
+				null}
 				<button>Submit Smurf</button>
 			</form>
 		</section>
