@@ -1,48 +1,54 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { addSmurf, setError } from "../actions/index";
 
-const stupidSmurfs = {
-	name: "",
-	nickname: "",
-	position: "",
-	description: "",
-	id: Date.now(),
-};
+//APPARENTLY THIS HAS TO BE A F'N CLASS COMPNONENT OR YOU FAIL THE WHOLE DAMN THING
 
-function AddForm(props) {
-	const [smurf, setSmurf] = useState(stupidSmurfs);
-
-	const handleChange = (e) => {
-		setSmurf({
-			...smurf,
-			[e.target.name]: e.target.value,
-		});
+class AddForm extends React.Component {
+	state = {
+		name: "",
+		position: "",
+		nickname: "",
+		description: "",
 	};
 
-	const handleSubmit = (e) => {
+	handleChange = (e) => {
+		this.setState({ ...this.state, [e.target.name]: e.target.value });
+	};
+
+	handleSubmit = (e) => {
 		e.preventDefault();
-		const newSmurf = {
-			name: smurf.name,
-			nickname: smurf.nickname,
-			position: smurf.position,
-			description: smurf.description,
-		};
+		this.setState({
+			name: "",
+			position: "",
+			nickname: "",
+			description: "",
+		});
 
 		//prevent duplicate submissions
-		for (let i = 0; i < props.smurf.length; i++) {
-			if (smurf.name === props.smurf[i].name) {
-				return props.setError(
-					"We already have that Smurf! Please enter a new one."
+		for (let i in this.props.smurf) {
+			if (this.state.name === this.props.smurf[i].name) {
+				return this.props.setError(
+					"We already have that Smurf! Please submit a new one."
 				);
 			}
 		}
 
 		//alerts for fake form validation
-		if (smurf.name === "" || smurf.position === "" || smurf.nickname === "") {
-			props.setError("You must include a Name, Nickname, and Position.");
+		if (
+			this.state.name === "" ||
+			this.state.position === "" ||
+			this.state.nickname === ""
+		) {
+			this.props.setError("You must include a Name, Nickname, and Position.");
 		} else {
-			props.addSmurf(newSmurf);
+			this.props.addSmurf(this.state);
+			this.setState({
+				name: "",
+				position: "",
+				nickname: "",
+				description: "",
+			});
 		}
 
 		// smurf.name === ""
@@ -55,81 +61,83 @@ function AddForm(props) {
 		// setSmurf(stupidSmurfs);
 	};
 
-	return (
-		<section>
-			<h2>Add Smurf</h2>
-			<form onSubmit={handleSubmit}>
-				<div className="form-group">
-					<label htmlFor="name">
-						Name:
-						<input
-							type="text"
-							placeholder="Please enter a name."
-							value={smurf.name}
-							onChange={handleChange}
-							name="name"
-							id={smurf.id}
-						/>
-					</label>
-					<br />
+	render() {
+		return (
+			<section>
+				<h2>Add Smurf</h2>
+				<form onSubmit={this.handleSubmit}>
+					<div className="form-group">
+						<label htmlFor="name">
+							Name:
+							<input
+								name="name"
+								type="text"
+								placeholder="Please enter a name."
+								value={this.state.input}
+								onChange={this.handleChange}
+								id={this.state.id}
+							/>
+						</label>
+						<br />
 
-					<label htmlFor="nickname">
-						Nickname:
-						<input
-							type="text"
-							placeholder="Please enter a nickname."
-							value={smurf.nickname}
-							onChange={handleChange}
-							name="nickname"
-							id={smurf.id}
-						/>
-					</label>
-					<br />
+						<label htmlFor="nickname">
+							Nickname:
+							<input
+								name="nickname"
+								type="text"
+								placeholder="Please enter a nickname."
+								value={this.state.input}
+								onChange={this.handleChange}
+								id={this.state.id}
+							/>
+						</label>
+						<br />
 
-					<label htmlFor="position">
-						Position:
-						<input
-							type="text"
-							placeholder="Please enter a position."
-							value={smurf.position}
-							onChange={handleChange}
-							name="position"
-							id={smurf.id}
-						/>
-					</label>
-					<br />
+						<label htmlFor="position">
+							Position:
+							<input
+								name="position"
+								type="text"
+								placeholder="Please enter a position."
+								value={this.state.input}
+								onChange={this.handleChange}
+								id={this.state.id}
+							/>
+						</label>
+						<br />
 
-					<label htmlFor="description">
-						Description:
-						<input
-							type="text"
-							placeholder="Please enter a description."
-							value={smurf.description}
-							onChange={handleChange}
-							name="description"
-							id={smurf.id}
-						/>
-					</label>
-					{props.error ? (
-						<div
-							data-testid="errorAlert"
-							className="alert alert-danger"
-							role="alert"
-						>
-							<p>{props.error}</p>
-						</div>
-					) : (
-						""
-					)}
-				</div>
-				<button>Submit Smurf</button>
-			</form>
-		</section>
-	);
+						<label htmlFor="description">
+							Description:
+							<input
+								name="description"
+								type="text"
+								placeholder="Please enter a description."
+								value={this.state.input}
+								onChange={this.handleChange}
+								id={this.state.id}
+							/>
+						</label>
+						{this.props.error ? (
+							<div
+								data-testid="errorAlert"
+								className="alert alert-danger"
+								role="alert"
+							>
+								<p>{this.props.error}</p>
+							</div>
+						) : (
+							""
+						)}
+					</div>
+					<button>Submit Smurf</button>
+				</form>
+			</section>
+		);
+	}
 }
-
 const mapStateToProps = (state) => {
 	return {
+		...state,
 		smurf: state.smurf,
 		isFetching: state.isFetching,
 		error: state.error,
