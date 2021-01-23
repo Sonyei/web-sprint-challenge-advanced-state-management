@@ -128,6 +128,7 @@ function AddForm(props) {
 
 const mapStateToProps = (state) => {
 	return {
+		...state,
 		smurf: state.smurf,
 		isFetching: state.isFetching,
 		error: state.error,
