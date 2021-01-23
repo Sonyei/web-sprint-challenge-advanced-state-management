@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { addSmurf, setError, clearError } from "../actions/index";
+import { addSmurf, setError } from "../actions/index";
 
 const stupidSmurfs = {
 	name: "",
@@ -114,7 +114,7 @@ function AddForm(props) {
 						className="alert alert-danger"
 						role="alert"
 					>
-						Error: {props.error}
+						Error
 					</div>
 				) : (
 					//Their Error doesn't appreciate being in <p> tags, I guess.
@@ -132,9 +132,7 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, { addSmurf, setError, clearError })(
-	AddForm
-);
+export default connect(mapStateToProps, { addSmurf, setError })(AddForm);
 
 //1. Add in all necessary import components and library methods.
 //2. Connect all needed redux state props and action functions to the component before exporting.
