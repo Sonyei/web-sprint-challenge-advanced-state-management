@@ -39,7 +39,7 @@ function AddForm(props) {
 		}
 
 		//alerts for fake form validation
-		if (smurf.name === "" || smurf.nickname === "" || smurf.position === "") {
+		if (smurf.name === "" || smurf.position === "" || smurf.nickname === "") {
 			props.setError("You must include a Name, Nickname, and Position.");
 		} else {
 			props.addSmurf(newSmurf);
