@@ -34,15 +34,17 @@ export const addSmurf = (smurf) => (dispatch) => {
 		});
 };
 
-export const setError = (errorMessage) => {
-	return { type: SET_ERROR, payload: errorMessage };
+export const setError = (errorMessage) => (dispatch) => {
+	dispatch({ type: SET_ERROR, payload: errorMessage });
+	setTimeout(() => {
+		dispatch(clearError());
+	}, 200);
 };
 
 export const clearError = () => {
-	return { type: CLEAR_ERORR };
+	return { type: CLEAR_ERORR, payload: "" };
 };
 
-//Task List:
 //1. Add fetch smurfs action:
 //              - fetch and return initial list of smurfs
 //              - dispatch actions that indicate if we are waiting for a server response
