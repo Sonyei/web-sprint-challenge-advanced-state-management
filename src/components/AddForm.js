@@ -68,7 +68,7 @@ function AddForm(props) {
 							value={smurf.name}
 							onChange={handleChange}
 							name="name"
-							id={smurf.id}
+							id="name"
 						/>
 					</label>
 					<br />
@@ -80,7 +80,7 @@ function AddForm(props) {
 							value={smurf.nickname}
 							onChange={handleChange}
 							name="nickname"
-							id={smurf.id}
+							id="nickname"
 						/>
 					</label>
 					<br />
@@ -92,7 +92,7 @@ function AddForm(props) {
 							value={smurf.position}
 							onChange={handleChange}
 							name="position"
-							id={smurf.id}
+							id="position"
 						/>
 					</label>
 					<br />
@@ -104,7 +104,7 @@ function AddForm(props) {
 							value={smurf.description}
 							onChange={handleChange}
 							name="description"
-							id={smurf.id}
+							id="description"
 						/>
 					</label>
 				</div>
